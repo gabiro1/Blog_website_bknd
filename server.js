@@ -16,11 +16,11 @@ app.use(cors());
 
 // api endpoints
 app.use('/api/user', userRoute);
-app.use('/api/post', postRoute);
+app.use('/api', postRoute);
 app.use('/api/comment', commentRoutes);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}/`);
 });
 
 app.get('/', (req, res) => {

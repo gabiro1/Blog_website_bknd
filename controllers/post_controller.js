@@ -1,18 +1,19 @@
 import { db } from "../config/db.js";
 
 const createPost = (req, res) => {
-    const { title, content, category,  reading_time } = req.body;
+    const { title, content, category} = req.body;
     const image = req.file ? req.file.filename : null;
-    const author_id = req.user.id;
+    //const author_id = req.user.name;
+    const author_id = null;
 
     const insertQuery = `
-        INSERT INTO post (title, content,category, author_id, image, reading_time )
-        VALUES (?, ?, ?, ?,?,?)
+        INSERT INTO post (title, content,category, author_id, image)
+        VALUES (?, ?, ?, ?,?)
     `;
 
-    db.query(insertQuery, [title, content, category, author_id, image, reading_time], (err, result) => {
+    db.query(insertQuery, [title, content, category, author_id, image], (err, result) => {
         if (err) {
-            console.error("Error inserting post:", err);
+            console.error("Error inserting post:", err.message);
             return res.status(500).json({ message: "Error creating post" });
         }
         return res.status(201).json({ message: "Post created successfully", postId: result.insertId, author_id });

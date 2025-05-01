@@ -5,7 +5,7 @@ import upload from '../middleware/multer.js';
 
 
 const postRoute = express.Router();
-postRoute.post('/post', authMiddleware, upload.single('image'), createPost);
+postRoute.post('/post', upload.single('image'), createPost);
 postRoute.get('/', getPosts);
 postRoute.get('/:id', getPostById);
 postRoute.put('/edit/:id', authMiddleware, upload.single("image"), editPost);

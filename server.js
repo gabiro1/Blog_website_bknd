@@ -19,6 +19,7 @@ app.use('/api/user', userRoute);
 app.use('/api', postRoute);
 app.use('/api/comment', commentRoutes);
 
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}/`);
 });
